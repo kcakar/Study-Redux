@@ -1,7 +1,7 @@
-#Redux
+# Redux
 Redux is a unidirectonal state manager. It makes use of immutable data and a history of states to have better control over states and a have better debugging experience.
 
-##Terms
+## Terms
  * **Reducer**
     Decides how to handle an action.
  * **Action**
