@@ -20,4 +20,8 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
     -Second parameter is what you want to copy into the initial object.  
     -Third parameter is what you want to merge with the object.  
     
-    Immutability allows you to have State Snapshots, Undo changes and reload from URL in a single page app.
+    Immutability allows you to have State Snapshots, Undo changes, reload from URL in a single page app and time travel.
+
+
+
+
