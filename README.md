@@ -11,14 +11,13 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
     * No side effects. Means they do not change anything in anywhere except variables in themselves.
     * Given the same input, you will always get the same output.
 * **Immutability**
-    Without immutability you can apply changes to objects. 
-    But once the object has changed you have no idea about what it state was before or how it was changed or why it changed.
+    Without immutability you can apply changes to objects. But once the object has changed you have no idea about what it state was before or how it was changed or why it changed.  
 
     With immutability you always clone and object and apply changes to the new object using below function:
 
-    `Object.Assign({},state,{points:50});`
-    -First parameter is the initial object we create.
-    -Second parameter is what you want to copy into the initial object.
-    -Third parameter is what you want to merge with the object.
+    `Object.Assign({},state,{points:50});`  
+    -First parameter is the initial object we create.  
+    -Second parameter is what you want to copy into the initial object.  
+    -Third parameter is what you want to merge with the object.  
     
     Immutability allows you to have State Snapshots, Undo changes and reload from URL in a single page app.
