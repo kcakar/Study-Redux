@@ -34,12 +34,16 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
 
 ## Packages
 * react-redux: 
-  * This has the <Provider> higher order component. It makes the store available in every component.
-  * Has the connect method to connect components to the store. So that you can reach the store with this.props.
-* redux: This has the createStore method used to create a store.
+  * This has the **\<Provider\>** higher order component. It makes the store available in every component.
+  * Has the **connect** method to connect components to the store. So that you can reach the store with this.props.
+* redux: 
+  * This has the **createStore** method used to create a store.
+  * Has the **applyMiddleware** function. This function is used to use middleware packages such as logger or thunk.
 
 ## Convention
 * Your store is stored in stores/configureStore.js file.
+* Your presentational components are under /components folder.
+* Your container components are under /containers folder.
 * Your store needs to be accessed throughout the app.
 
 ## Store interactions
@@ -60,6 +64,7 @@ Always use `Object.assign({},state,{propertyName:propertyValue})` or the object 
 `{...state , originAmount:action.payload}`
 This is to make sure we have access to the history.
 
+# Functions
 * **Subscribe** (function)  
 Subscribe function is used to changes in the store. You can get the current state using **store.getState()** method. The passed function will be called whenever a change happens in the state. But with react-redux package, you shouldn't need to use this method. The subscribtions are managed with the connect method.
 
@@ -69,11 +74,17 @@ You can set the state only through actions. And you do that through dispatch met
 * **Reducer** (state = defaultState, action)
 Whenever an action is dispatched, all reducers get called. You basically check the type of action and if it is your type, you change the state. If not you return the state without modifiying it.
 
+* **createStore** (state, applyMiddleware(middlewareName))
+    This function is where you create your store with a state and apply middleware to use.  
+    Its in configureStore.js
+    
 * **Provider**  
-    Makes the store available in every component. Wrap your main component with this. (react-redux component)
+    Makes the store available in every component. Wrap your main component with this. (react-redux component)  
+    Its in App.js
     
 * **connect function** (function mapStateToProps(state,props){})(ComponentName)  
-    This function makes a component have access to the store. It needs one paramater. It is mapping function. This function gets called whenever the store is updated and we pass it to the props. And since this is a wrapper function, we pass the component for wrapping.
+    This function makes a component have access to the store. It needs one paramater. It is mapping function. This function gets called whenever the store is updated and we pass it to the props. And since this is a wrapper function, we pass the component for wrapping.  
+    Its in every container component.
 
 * **mapStateToProps** (state,props)  
   This function returns an object. The returned object is merged into the props of the component. This is how we expose the necessary parts of the store to the component. This function can also be anonymous but it is what you pass to the connect function.
