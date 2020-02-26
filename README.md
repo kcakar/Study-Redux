@@ -51,7 +51,7 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
 * Your actions are under /actions folder.
 * Your store needs to be accessed throughout the app.
 
-![folder](https://kcakar.github.io/readme-images/reactfolderstructure.png)
+![folder](https://kcakar.github.io/reactfolderstructure.png)
 
 ## Store interactions
 You can access the store to get the state or set the state.
