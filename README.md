@@ -71,23 +71,32 @@ Subscribe function is used to changes in the store. You can get the current stat
 * **Dispatch** ({type:"ACTION_NAME",payload:{})  
 You can set the state only through actions. And you do that through dispatch method. Dispact method has an object as a parameter and this object has the type and the payload in it. 
 
-* **Reducer** (state = defaultState, action)
+* **Reducer** (state = defaultState, action)  
 Whenever an action is dispatched, all reducers get called. You basically check the type of action and if it is your type, you change the state. If not you return the state without modifiying it.
 
-* **createStore** (state, applyMiddleware(middlewareName))
+* **createStore** (state, applyMiddleware(middlewareName))  
     This function is where you create your store with a state and apply middleware to use.  
+    
     Its in configureStore.js
     
+* **applyMiddleware**([list of middleware])  
+    This is where you apply middleware to the store dispatch methods. 
+    
+    Its in configureStore.js
+
 * **Provider**  
     Makes the store available in every component. Wrap your main component with this. (react-redux component)  
+    
     Its in App.js
     
 * **connect function** (function mapStateToProps(state,props){})(ComponentName)  
     This function makes a component have access to the store. It needs one paramater. It is mapping function. This function gets called whenever the store is updated and we pass it to the props. And since this is a wrapper function, we pass the component for wrapping.  
+    
     Its in every container component.
 
 * **mapStateToProps** (state,props)  
   This function returns an object. The returned object is merged into the props of the component. This is how we expose the necessary parts of the store to the component. This function can also be anonymous but it is what you pass to the connect function.
 
 
+    
 
