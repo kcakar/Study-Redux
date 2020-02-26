@@ -38,7 +38,8 @@ When you create a store, all reducers are called once.
 
 **IMPORTANT**   
 **NEVER** modify state directly. You have to make immutable updates.  
-Always use Object.assign({},state,{propertyName:propertyValue}).
+Always use Object.assign({},state,{propertyName:propertyValue}) or the object spread operator:  
+{...state , originAmount:action.payload}
 This is to make sure we have access to the history.
 
 * **Subscribe** (function)  
