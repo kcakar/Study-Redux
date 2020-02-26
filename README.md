@@ -5,6 +5,7 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
  * **Reducer**  
     Decides how to handle an action.
  * **Action**  
+     These are dispacted in order to shape the state or the UI.  
  * **Pure functions**  
  Below points are the characteristics of pure functions and they are what makes them reliable.
     * Uses only local variables. NO GLOBAL VARIABLES!
@@ -13,9 +14,6 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
 * **Immutability**  
     Without immutability you can apply changes to objects. But once the object has changed you have no idea about what it state was before or how it was changed or why it changed.  
     
-* **Container/Presentational components**  
-    You shouldn't connect all the components to the store. Instead, create a container component and connect it to the store. This component also has all the logic. Then create presentational components and pass what they need using props. These components do not know about redux, they do not connect to the store.
-
     With immutability you always clone and object and apply changes to the new object using below function:
 
     `Object.Assign({},state,{points:50});`  
@@ -23,7 +21,13 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
     -Second parameter is what you want to copy into the initial object.  
     -Third parameter is what you want to merge with the object.  
     
-    Immutability allows you to have State Snapshots, Undo changes, reload from URL in a single page app and time travel.
+    Immutability allows you to have State Snapshots, Undo changes, reload from URL in a single page app and time travel.  
+    
+* **Container/Presentational components**  
+    You shouldn't connect all the components to the store. Instead, create a container component and connect it to the store. This component also has all the logic. Then create presentational components and pass what they need using props. These components do not know about redux, they do not connect to the store.  
+    
+* **Thunk**  
+    Thunk is a function that wraps an expression to delay its evaluation. In react-redux, it is a package that is used for async actions.
 
 ## What you need
 * You need a default state
@@ -44,7 +48,10 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
 * Your store is stored in stores/configureStore.js file.
 * Your presentational components are under /components folder.
 * Your container components are under /containers folder.
+* Your actions are under /actions folder.
 * Your store needs to be accessed throughout the app.
+
+![folder](https://kcakar.github.io/readme-images/reactfolderstructure.png)
 
 ## Store interactions
 You can access the store to get the state or set the state.
@@ -69,7 +76,16 @@ This is to make sure we have access to the history.
 Subscribe function is used to changes in the store. You can get the current state using **store.getState()** method. The passed function will be called whenever a change happens in the state. But with react-redux package, you shouldn't need to use this method. The subscribtions are managed with the connect method.
 
 * **Dispatch** ({type:"ACTION_NAME",payload:{})  
-You can set the state only through actions. And you do that through dispatch method. Dispact method has an object as a parameter and this object has the type and the payload in it. 
+You can set the state only through actions. And you do that through dispatch method. Dispact method has an object as a parameter and this object has the type and the payload in it.  
+If you want to dispacth an action for an asynchronous function like an ajax call, you need to use redux-thunk. redux-thunk passes the dispact method automatically so you do not need to think about the context of this.
+Ex:  
+`this.props.dispatch(function(dispatch){
+    dispatch({type:"SOME_ACTION", data:"someData"});
+    
+    setTimeout(function() {
+        dispatch({type:"CHANGE_ORIGIN_AMOUNT", data:{newAmount:"5000"}});
+    } , 3000)
+ });`
 
 * **Reducer** (state = defaultState, action)  
 Whenever an action is dispatched, all reducers get called. You basically check the type of action and if it is your type, you change the state. If not you return the state without modifiying it.
@@ -79,8 +95,8 @@ Whenever an action is dispatched, all reducers get called. You basically check t
     
     Its in configureStore.js
     
-* **applyMiddleware**([list of middleware])  
-    This is where you apply middleware to the store dispatch methods. 
+* **applyMiddleware**(middleware1,middleware2,middleware3)  
+    This is where you apply middleware to the store dispatch methods. **Logger should always be the last.**
     
     Its in configureStore.js
 
