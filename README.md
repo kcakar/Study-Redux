@@ -22,6 +22,34 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
     
     Immutability allows you to have State Snapshots, Undo changes, reload from URL in a single page app and time travel.
 
+## What you need
+* You need a default state
+* You need a reducer. It will update the state. It takes two variables. State and action.
+* You need a store. A store is where the state is saved. You pass the reducer to it.
 
+## Store interactions
+You can access the store to get the state or set the state.
+1. Create a store with your default state.
+2. Create your subscriptions and subscribe them using .subscribe.
+3. Dispact actions to change the state.
+
+**Note:**
+When you create a store, all reducers are called once.
+
+**IMPORTANT**   
+**NEVER** modify state directly. You have to make immutable updates.  
+Always use Object.assign({},state,{propertyName:propertyValue}).
+This is to make sure we have access to the history.
+
+* **Subscribe** (function)  
+Subscribe function is used to changes in the store. You can get the current state using **store.getState()** method. The passed function will be called whenever a change happens in the state.
+
+* **Dispatch** ({type:"ACTION_NAME",payload:{})  
+You can set the state only through actions. And you do that through dispatch method. Dispact method has an object as a parameter and this object has the type and the payload in it. 
+
+* **Reducer** (state = defaultState, action)
+Whenever an action is dispatched, all reducers get called. You basically check the type of action and if it is your type, you change the state. If not you return the state without modifiying it.
+    
+    
 
 
