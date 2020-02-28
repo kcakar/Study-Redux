@@ -29,12 +29,16 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
 * **Thunk**  
     Thunk is a function that wraps an expression to delay its evaluation. In react-redux, it is a package that is used for async actions.
 
+* **Debounce**
+    Debouncing a function makes sure that you cant call the function too many times. This is done by waiting for a given time after the last call of the function and not executing it until then. This is necessary for functions with ajax calls. **Do not debounce functions with return values**. Change your implementation then.
+
 ## What you need
 * You need a default state
 * You need a reducer. It will update the state. It takes two variables. State and action.
 * You need a store. A store is where the state is saved. You pass the reducer to it.
 * You need a Provider. Pass the store to the Provider to make it available in every component.
 * You need to Connect each component you want to access the store using connect function.
+* You need to debounce every function with an ajax call.
 
 ## Packages
 * react-redux: 
@@ -77,7 +81,7 @@ Subscribe function is used to changes in the store. You can get the current stat
 
 * **Dispatch** ({type:"ACTION_NAME",payload:{})  
 You can set the state only through actions. And you do that through dispatch method. Dispact method has an object as a parameter and this object has the type and the payload in it.  
-If you want to dispacth an action for an asynchronous function like an ajax call, you need to use redux-thunk. redux-thunk passes the dispact method automatically so you do not need to think about the context of this.
+If you want to dispacth an action for an asynchronous function like an ajax call, you need to use redux-thunk. redux-thunk passes the dispact method automatically so you do not need to think about the context of this. **But thunk expects a function, not an object!**
 Ex:  
 `this.props.dispatch(function(dispatch){
     dispatch({type:"SOME_ACTION", data:"someData"});
