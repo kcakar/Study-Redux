@@ -31,10 +31,11 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
 
 * **Debounce**
     Debouncing a function makes sure that you cant call the function too many times. This is done by waiting for a given time after the last call of the function and not executing it until then. This is necessary for functions with ajax calls. **Do not debounce functions with return values**. Change your implementation then.
-
+    
 ## What you need
 * You need a default state
 * You need a reducer. It will update the state. It takes two variables. State and action.
+* You need to create a constants file where all the action types are stored. This makes it typesafe to use them in the code.
 * You need a store. A store is where the state is saved. You pass the reducer to it.
 * You need a Provider. Pass the store to the Provider to make it available in every component.
 * You need to Connect each component you want to access the store using connect function.
@@ -53,6 +54,7 @@ Redux is a unidirectonal state manager. It makes use of immutable data and a his
 * Your presentational components are under /components folder.
 * Your container components are under /containers folder.
 * Your actions are under /actions folder.
+* Your constants are on same folder as main.js. This file is used to store action types.
 * Your store needs to be accessed throughout the app.
 
 ![folder](https://raw.githubusercontent.com/kcakar/kcakar.github.io/master/reactfolderstructure.png)
